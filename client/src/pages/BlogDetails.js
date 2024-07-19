@@ -39,12 +39,13 @@ const BlogDetails = () => {
   //form
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userId = localStorage.getItem("userId");
     try {
       const { data } = await axios.put(`/api/v1/blog/update-blog/${id}`, {
         title: inputs.title,
         description: inputs.description,
         image: inputs.image,
-        user: id,
+        user: userId,
       });
       if (data?.success) {
         toast.success("Blog Updated");
@@ -76,7 +77,7 @@ const BlogDetails = () => {
             padding={3}
             color="gray"
           >
-            Update A Pots
+            Update A post
           </Typography>
           <InputLabel
             sx={{ mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" }}
